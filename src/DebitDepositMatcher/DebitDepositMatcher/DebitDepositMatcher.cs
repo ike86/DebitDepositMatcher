@@ -8,12 +8,9 @@ namespace DebitDepositMatcher
 {
     public class DebitDepositMatcher
     {
-        public IEnumerable<Tuple<decimal, decimal>> Match(IEnumerable<decimal> v1, IEnumerable<decimal> v2)
+        public IEnumerable<Tuple<decimal, decimal>> Match(IEnumerable<decimal> debits, IEnumerable<decimal> depostis)
         {
-            return new[]
-            {
-                new Tuple<decimal, decimal>(42m, 42m)
-            };
+            return debits.Zip(depostis, (debit, deposit) => new Tuple<decimal, decimal>(debit, deposit));
         }
     }
 }

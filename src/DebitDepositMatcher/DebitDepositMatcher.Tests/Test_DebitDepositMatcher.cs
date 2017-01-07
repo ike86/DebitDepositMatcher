@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,6 +11,18 @@ namespace DebitDepositMatcher.Tests
         [TestClass]
         public class Match
         {
+            [TestMethod]
+            public void ReturnsEmpty_if_PassedEmpty()
+            {
+                var subject = new DebitDepositMatcher();
+
+                var result = subject.Match(
+                    Enumerable.Empty<decimal>(),
+                    Enumerable.Empty<decimal>());
+
+                result.Should().BeEmpty();
+            }
+
             [TestMethod]
             public void ReturnsPairedDebitDepositValues_if_TheyMatch()
             {
